@@ -64,7 +64,7 @@ class SendBulkEmailCommand extends Command
                         }
                     }
                     $sqs->deleteMessage([
-                        'QueueUrl' => config('bulkmailer.sqs.queue'),
+                        'QueueUrl' => config('bulkmailer.queue'),
                         'ReceiptHandle' => $message['ReceiptHandle'],
                     ]);
                 }
