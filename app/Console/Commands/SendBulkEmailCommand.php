@@ -43,7 +43,7 @@ class SendBulkEmailCommand extends Command
         for ($i = 1; $i <= 100; $i++) {
             try {
                 $result = $sqs->receiveMessage([
-                    'QueueUrl' => env('AWS_SQS_QUEUE_BULK_MAIL'),
+                    'QueueUrl' => config('bulkmailer.queue'),
                     'MaxNumberOfMessages' => 1
                 ]);
             } catch (\Exception $e) {
@@ -64,7 +64,7 @@ class SendBulkEmailCommand extends Command
                         }
                     }
                     $sqs->deleteMessage([
-                        'QueueUrl' => env('AWS_SQS_QUEUE_BULK_MAIL'),
+                        'QueueUrl' => config('bulkmailer.sqs.queue'),
                         'ReceiptHandle' => $message['ReceiptHandle'],
                     ]);
                 }
