@@ -28,7 +28,8 @@ class Kernel extends ConsoleKernel
     {
         for ($i = 1; $i <= 5; $i++) {
             $schedule->command('send_bulk_email')
-                ->everyMinute();
+                ->everyMinute()
+                ->runInBackground();
         }
 
         $schedule->command('delete_processed_queues')
